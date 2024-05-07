@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 mt-3">
+        <div class="container">
+            {% if object.image %}
+            <img src="{{ object.image.url }}" alt="{{ object.title }}">
+            {% else %}
+            <img src="/pictures/default.png" alt="{{ object.title }}">
+            {% endif %}
+
+            <h3 class="mt-3">{{ object.title }}</h3>
+            <a href="{% url 'payment' %}" class="btn btn-success">Купить курс</a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="aside">
+            <h1>Описание курса</h1>
+            <p>{{ object.desc }}</p>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

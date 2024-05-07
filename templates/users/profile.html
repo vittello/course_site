@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container centered-block mt-5 bg-light rounded">
+        <h1 style="color: #B38A22">Кабинет пользователя</h1>
+        <div class="row">
+            <div class="col-md-2">
+                <img class="bd-placeholder-img rounded" width="64" height="64" src="{{ user.profile.img.url }}">
+            </div>
+            <div class="col-md-10">
+                <div class="media text-muted pt-3">
+                    <div class="media-body">
+                        <p class="pb-3 mb-0 small lh-sm">
+                            <strong class="d-block text-gray-dark">@{{ user.username }}</strong>
+                        </p>
+                        {% if user.email %}
+                        <p class="pb-3 mb-0 small lh-sm border-bottom">
+                            <strong class="d-block text-gray-dark">@{{ user.email }}</strong>
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>Изменить данные про пользователя</h2>
+        <form method="post" enctype="multipart/form-data" class="d-grid gap-2 form-register mt-4"
+            style="display: flex; justify-content: center;">
+            {% csrf_token %}
+            {{ updateUserForm.as_p }}
+            {{ profileForm.as_p }}
+            {{ genderForm.as_p }}
+            {{ choiceForm.as_p }}
+            <button class="btn btn-outline-warning mx-auto" type="submit">Обновить</button>
+        </form>
+    </div>
+{% endblock %}

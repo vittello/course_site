@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-3">Связаться с нами</h1>
+    <form method="post" class="d-grid gap-2 form-register mx-5 rounded">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-outline-warning mx-auto" type="submit">Отправить сообщение</button>
+
+    </form>
+</div>
+{% endblock %}
