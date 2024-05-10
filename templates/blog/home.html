@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid vh-100 d-flex flex-column justify-content-center align-items-center bg-light text-dark text-center">
+        <h1 class="pt-5">Простой и удобный сервис</h1>
+        <h4 class="m-1">Делаем работу быстро и качественно</h4>
+        <a href="{% url 'service' %}">
+            <button type="button" class="btn btn-danger mt-3">Посмотреть  услуги</button>
+        </a>
+        
+    </div>
+{% endblock %}
+        
+   

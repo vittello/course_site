@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="courses container">
+    <div class="course pt-3">
+        {% if lesson.course.image %}
+            <img src="{{ lesson.course.image.url }}" alt="{{ lesson.course.title }}">
+        {% else %}
+            <img src="pictures/default.png" alt="{{ lesson.course.title }}">
+{% endif %}
+
+        <h3>{{ object.title }}</h3>
+    </div>
+
+    <div class="aside">
+        <h1>Видео урок – {{ lesson.title }}</h1>
+        <p>{{ lesson.desc }}</p>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ lesson.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+{% if user.is_authenticated %}
+    <div>
+        <h2 class="text-center mb-3 mt-5">Комментарии</h2>
+        <form method="post" action="{% url 'lesson_detail' slug=object.slug lesson_slug=lesson.slug %}" class="d-grid gap-2 form-register mx-5 rounded" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-success mx-auto" type="submit">Добавить</button>
+        </form>
+    </div>
+    <div>
+        <h1 class="text-center">Вывод всех комментариев</h1>
+        {% for comment in comments %}
+        <div class="container alert-success rounded pb-2 mb-3">
+            <p><b>Текст сообщения:</b> 
+            <p>{{ comment.text }}</p>
+            <p><b>Автор:</b> {{ comment.author.username }}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div>
+        <p class="text-center mt-5">Чтобы оставить комментарий, пожалуйста, <a href="{% url 'user' %}">войдите</a> в систему.</p>
+    </div>
+{% endif %}
+{% endblock %}
