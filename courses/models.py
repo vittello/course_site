@@ -20,7 +20,7 @@ class Course(models.Model):
         verbose_name_plural = 'Курсы'
         
 class Lesson(models.Model):
-    # slug, title, desc, course, number, video_url
+    
     slug = models.SlugField('Уникальное название урока')
     title = models.CharField('Название урока', max_length=120)
     desc = models.TextField('Описание урока')
